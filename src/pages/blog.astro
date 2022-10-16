@@ -1,0 +1,56 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation.astro";
+
+import "@fontsource/eczar/700.css";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+
+// Use Astro.glob() to fetch all posts, and then sort them by date.
+const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
+);
+
+console.log(posts.forEach((post) => console.log(post.frontmatter)));
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style></style>
+  </head>
+  <body class="w-[56%] mx-auto test-background">
+    <div class="mt-4">
+      <h3 class="text-lg cursor-pointer hover:text-blue-500 font-bold">
+        <a href="/">Home</a>
+      </h3>
+    </div>
+    <div class="min-h-[calc(100vh_-_130px)]">
+      <h1 class="text-4xl mt-8 font-bold font-serif">Blog</h1>
+      <p class="italic text-gray-400">
+        Trying to Grok things I dont understand
+      </p>
+      <main class="mt-5">
+        <section>
+          <ul>
+            {
+              posts.map((post) => (
+                <li class="mt-4 cursor-pointer hover:text-[#fd1d1d]">
+                  <h2 class="text-2xl font-serif">
+                    <a href={post.url}>{post.frontmatter.title}</a>
+                  </h2>
+                  <p class="text-gray-500">{post.frontmatter?.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </main>
+    </div>
+    <Footer />
+  </body>
+</html>
