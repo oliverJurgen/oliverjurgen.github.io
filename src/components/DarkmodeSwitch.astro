@@ -28,13 +28,6 @@
     </div>
     <script defer>
       const updateTheme = () => {
-        if (!("theme" in localStorage)) {
-          document.documentElement.classList.add("dark");
-          localStorage.theme = "dark";
-
-          return;
-        }
-
         if (localStorage.theme === "light") {
           document.documentElement.classList.add("dark");
           localStorage.theme = "dark";
