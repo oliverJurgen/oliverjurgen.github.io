@@ -13,35 +13,12 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
     new Date(b.frontmatter.pubDate).valueOf() -
     new Date(a.frontmatter.pubDate).valueOf()
 );
-
-console.log(posts.forEach((post) => console.log(post.frontmatter)));
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style></style>
-    <!-- <script src="../scripts/initColorTheme"></script> -->
-    <script>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        console.log({
-          matches: window.matchMedia("(prefers-color-scheme: dark)").matches,
-        });
-        document.documentElement.classList.add("dark");
-
-        console.log({
-          dClassList: document.documentElement.classList.contains("light"),
-        });
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script>
   </head>
   <body
     class="w-[90%] lg:w-[56%] mx-auto dark:bg-darkmodeBg bg-white dark:text-white text-black"
