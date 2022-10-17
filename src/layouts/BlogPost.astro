@@ -1,11 +1,10 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Navigation from "../components/Navigation.astro";
 import "@fontsource/eczar/700.css";
 import "@fontsource/eczar/400.css";
 import "../styles/markdown-styles.css";
+import DarkmodeSwitch from "../components/DarkmodeSwitch.astro";
 
 export interface Props {
   content: {
@@ -27,6 +26,28 @@ const {
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
+
+    <!-- <script src="../scripts/initColorTheme"></script> -->
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        console.log({
+          matches: window.matchMedia("(prefers-color-scheme: dark)").matches,
+        });
+        // document.documentElement.classList.add("light");
+        document.documentElement.classList.add("dark");
+
+        // console.log({
+        //   dClassList: document.documentElement.classList.contains("light"),
+        // });
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
     <style>
       .pattern {
         display: block;
@@ -66,7 +87,9 @@ const {
     </style>
   </head>
 
-  <body class="w-[100vw]">
+  <body
+    class="w-[100vw] dark:bg-darkmodeBg bg-white dark:text-white text-black"
+  >
     <div
       class="absolute lg:fixed top-0 left-0 m-[1rem] cursor-pointer cursor-shadow"
     >
@@ -89,7 +112,9 @@ const {
 
     <div class="w-[90%] sm:w-[80%] md:w-[68%] lg:w-[48%] mx-auto mt-12">
       <h1 class="title-text font-serif">{title}</h1>
-      <h4 class="font-serif text-slate-500 text-lg">{description}</h4>
+      <h4 class="font-serif text-xl text-slate-500 dark:text-darkmodeText">
+        {description}
+      </h4>
       <h3 class="">{pubDate}</h3>
     </div>
 
@@ -116,5 +141,6 @@ const {
       </article>
       <Footer />
     </main>
+    <DarkmodeSwitch />
   </body>
 </html>

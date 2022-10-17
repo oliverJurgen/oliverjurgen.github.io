@@ -3,22 +3,28 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import DarkmodeSwitch from "../components/DarkmodeSwitch.astro";
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script src="../scripts/initColorTheme"></script>
   </head>
-  <body class="max-w-[58%] mx-auto mt-[80px]">
+  <body
+    class="max-w-[58%] mx-auto mt-[80px] dark:bg-darkmodeBg bg-white dark:text-white text-black"
+  >
     <!-- <Header title={SITE_TITLE} /> -->
     <main>
       <h1>🧑‍🚀 Hi, I'm Oliver!</h1>
+      <div>I'm a Software Developer</div>
       <span>
         Check out my
         <a href="/blog" class="text-blue-500"> Blog</a>
       </span>
     </main>
     <Footer />
+    <DarkmodeSwitch />
   </body>
 </html>

@@ -2,7 +2,7 @@
 layout: "../../layouts/BlogPost.astro"
 title: "First post"
 description: "Lorem ipsum dolor sit amet"
-category: "Misc"
+category: "Books"
 readTimeMinutes: 8
 pubDate: "Jul 08 2022"
 heroImage: "/placeholder-hero.jpg"

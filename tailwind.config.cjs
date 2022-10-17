@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     screens: {
@@ -24,7 +25,10 @@ module.exports = {
         serif: "Eczar, serif",
         sans: "Public Sans,Roboto,sans-serif",
       },
-      colors: {},
+      colors: {
+        darkmodeText: "hsla(0,0%,94%,0.88)",
+        darkmodeBg: "hsl(210deg, 30%, 8%)",
+      },
     },
   },
   plugins: [],
