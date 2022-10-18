@@ -7,7 +7,9 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://oliverJurgen.github.io",
+  base: "/oliver-astro-blog",
+
   integrations: [mdx(), sitemap(), tailwind()],
   server: {
     port: 3001,
