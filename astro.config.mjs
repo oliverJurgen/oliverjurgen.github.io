@@ -8,7 +8,7 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://oliverjurgen.github.io",
-  base: "/oliver-astro-blog",
+  base: "/",
 
   integrations: [mdx(), sitemap(), tailwind()],
   server: {
